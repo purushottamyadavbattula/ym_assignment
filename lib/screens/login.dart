@@ -63,7 +63,7 @@ class _LoginState extends State<Login> {
             errorMessage = data["error"];
           } else {
             errorMessage =
-                "We are facing technical errors please try again after sometime";
+                "We are facing technical errors please try again after sometime ${data["error"]}";
           }
 
           return AlertDialog(

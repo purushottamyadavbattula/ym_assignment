@@ -108,7 +108,7 @@ class _FetchBotsState extends State<FetchBots> {
         labelStyle: GoogleFonts.lobster(color: Colors.grey),
       ),
       autocorrect: true,
-      onSubmitted: (value) {
+      onChanged: (value) {
         print("submitted value $value");
         List<dynamic> tempObj = [...bots];
         List<Widget> op = [];

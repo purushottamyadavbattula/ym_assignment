@@ -16,7 +16,7 @@ class Api {
       };
       var headers = {"Content-Type": "application/json"};
       print(body);
-      var response = await http.post(url + "/v2login", body: body);
+      var response = await http.post("$url/v2login", body: body);
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {
@@ -24,14 +24,14 @@ class Api {
         print("response : ${response.body}");
         return {
           "error":
-              "We are facing technical errors please try again after sometime"
+              "We are facing technical errors please try again after sometime ${response.statusCode}"
         };
       }
     } catch (exception) {
       print("exception found $exception");
       return {
         "error":
-            "We are facing technical errors please try again after sometime"
+            "We are facing technical errors please try again after sometime $exception"
       };
     }
   }
@@ -40,7 +40,7 @@ class Api {
     print('token $token');
     var headers = {"x-auth-token": token};
     var response = await http.get(
-        url + "/bot?offset=0&limit=10&botType=sandbox&subscriptionId=1",
+        "$url/bot?offset=0&limit=10&botType=sandbox&subscriptionId=1",
         headers: headers);
 //    print(response);
     if (response.statusCode == 200) {
@@ -48,7 +48,7 @@ class Api {
     } else {
       return {
         "error":
-            "We are facing technical error please try again after some time"
+            "We are facing technical error please try again after some time ${response.statusCode}"
       };
     }
   }

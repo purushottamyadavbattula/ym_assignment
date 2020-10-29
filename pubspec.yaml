@@ -17,6 +17,7 @@ dependencies:
   google_fonts: ^1.1.1
   shared_preferences: ^0.5.12+2
   encrypt: ^4.0.0
+  http: ^0.12.2
 
 
 dev_dependencies:
