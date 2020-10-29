@@ -24,14 +24,14 @@ class Api {
         print("response : ${response.body}");
         return {
           "error":
-              "We are facing technical errors please try again after sometime ${response.statusCode}"
+              "We are facing technical errors please try again after sometime ( ${response.statusCode} )"
         };
       }
     } catch (exception) {
       print("exception found $exception");
       return {
         "error":
-            "We are facing technical errors please try again after sometime $exception"
+            "We are facing technical errors please try again after sometime \n\n $exception"
       };
     }
   }
@@ -48,7 +48,7 @@ class Api {
     } else {
       return {
         "error":
-            "We are facing technical error please try again after some time ${response.statusCode}"
+            "We are facing technical error please try again after some time ( ${response.statusCode} )"
       };
     }
   }

@@ -62,8 +62,7 @@ class _LoginState extends State<Login> {
           if (data == null) {
             errorMessage = data["error"];
           } else {
-            errorMessage =
-                "We are facing technical errors please try again after sometime ${data["error"]}";
+            errorMessage = data["error"];
           }
 
           return AlertDialog(
@@ -178,10 +177,24 @@ class _LoginState extends State<Login> {
                     print("Email : $email \n Password : $password");
                     if (email != null &&
                         email.length > 0 &&
-                        emailRegex.hasMatch(email)) {
+                        emailRegex.hasMatch(email) &&
+                        password != null &&
+                        password.length > 0) {
                       login(email, password, context, preference);
                       //hit api
                     } else {
+                      String title = "Invalid",
+                          message = "Please enter a valid";
+                      if (email == null ||
+                          email.length == 0 ||
+                          !emailRegex.hasMatch(email)) {
+                        title += " Email";
+                        message += " email address";
+                      }
+                      if (password == null || password.length == 0) {
+                        title += " Password";
+                        message += " Password";
+                      }
                       showDialog(
                           context: context,
                           builder: (BuildContext dialogContext) {
@@ -198,14 +211,13 @@ class _LoginState extends State<Login> {
                                   ),
                                   Flexible(
                                     child: Text(
-                                      "Invalid Email",
+                                      title,
 //                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   )
                                 ],
                               ),
-                              content:
-                                  Text("Please enter a valid email address"),
+                              content: Text(message),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
